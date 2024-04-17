@@ -2,17 +2,17 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: dev-flink
-  namespace: argocd
+  namespace: openshift-gitops
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: myproject
   destination:
-    name: in-cluster
+    name: 'in-cluster'
     namespace: default
   source:
-    path: argocd
-    repoURL: 'https://github.com/fdaluisio/flink.git'
+    path: flink-instance/
+    repoURL: 'https://github.com/fdaluisio/apache-flink.git'
     targetRevision: HEAD
     kustomize:
       components:
