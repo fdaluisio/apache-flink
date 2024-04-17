@@ -6,10 +6,10 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: myproject
+  project: default
   destination:
     name: 'in-cluster'
-    namespace: default
+    namespace: myproject
   source:
     path: flink-instance/
     repoURL: 'https://github.com/fdaluisio/apache-flink.git'
