@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ibm-event_processing-svil
+  namespace: openshift-gitops
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  destination:
+    name: 'in-cluster'
+    namespace: myproject
+  source:
+    path: ibm-event_processing-instance/overlay/dev/
+    repoURL: 'https://github.com/fdaluisio/apache-flink.git'
+    targetRevision: HEAD
+    kustomize: {}
+  syncPolicy: {}
