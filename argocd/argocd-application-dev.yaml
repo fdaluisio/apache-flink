@@ -11,10 +11,10 @@ spec:
     name: 'in-cluster'
     namespace: myproject
   source:
-    path: flink-instance/
+    path: flink-instance/overlay/dev/
     repoURL: 'https://github.com/fdaluisio/apache-flink.git'
     targetRevision: HEAD
-    kustomize:
-      components:
-        - overlay/dev/
+    kustomize: {}
+      # components:
+      #   - overlay/dev/
   syncPolicy: {}
