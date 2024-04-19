@@ -2,8 +2,15 @@ apiVersion: events.ibm.com/v1beta1
 kind: EventProcessing
 metadata:
   # name: quick-start-ep  # <- based on ibm-eventprocessing operator source example 
-  name: event_processing-svil
+  name: eventprocessing-svil
+  namespace: myproject
 spec:
+  authoring:
+    authConfig:
+      authType: LOCAL
+    storage:
+      type: persistent-claim
+      existingClaimName: eventprocessing-pvc
   license:
     accept: true
     license: L-HRZF-DWHH7A
@@ -15,10 +22,4 @@ spec:
     #     key: <key-contain-password-value>
     #     name: <flink-jks-password-secret>
     #   secretName: <flink-jks-secret>
-  authoring:
-    authConfig:
-      authType: LOCAL
-    storage:
-      type: persistent-claim
-      storageClass: crc-csi-hostpath-provisioner
-
+ 

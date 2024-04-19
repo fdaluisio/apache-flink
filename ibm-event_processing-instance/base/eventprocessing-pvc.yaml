@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: eventprocessing-pvc 
+  namespace: myproject
+  labels:
+    app.kubernetes.io/instance: eventprocessing-svil
+spec:
+  storageClassName: crc-csi-hostpath-provisioner
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
