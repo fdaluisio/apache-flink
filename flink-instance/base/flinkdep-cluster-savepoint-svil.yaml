@@ -1,7 +1,7 @@
 apiVersion: flink.apache.org/v1beta1
 kind: FlinkDeployment
 metadata:
-  name: flinkdep-questionario_mifid-svil
+  name: flinkdep-questionario-mifid-svil
 spec:
   image: docker.io/fdaluisio/flinkjob:v1
   flinkVersion: "v1_18"
