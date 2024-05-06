@@ -67,8 +67,5 @@ spec:
     parallelism: 1
     state: running
     upgradeMode: savepoint
-    resource:
-      memory: 2048m
-      cpu: 1
   mode: native
 
