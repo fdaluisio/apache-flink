@@ -67,7 +67,7 @@ spec:
       cpu: 0.5
   job:
     jarURI: local:///opt/flink/usrlib/sql-runner.jar
-    args: [""]
+    args: [" "]
     parallelism: 1
     state: running
     upgradeMode: savepoint
