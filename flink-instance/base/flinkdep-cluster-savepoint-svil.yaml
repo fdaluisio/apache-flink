@@ -3,7 +3,7 @@ kind: FlinkDeployment
 metadata:
   name: flinkdep-questionario-mifid-svil
 spec:
-  image: docker.io/fdaluisio/flinkjob:v2
+  image: docker.io/fdaluisio/fd-questionario-mifid-pf-pg:v1
   flinkVersion: "v1_18"
   flinkConfiguration:
     license.use: EventAutomationNonProduction
@@ -56,7 +56,7 @@ spec:
     replicas: 1
     resource:
       memory: 1024m
-      cpu: 0.25
+      cpu: 0.5
   taskManager:
     resource:
       memory: 1024m
@@ -67,5 +67,8 @@ spec:
     parallelism: 1
     state: running
     upgradeMode: savepoint
+    resource:
+      memory: 2048m
+      cpu: 1
   mode: native
 
