@@ -1,15 +1,16 @@
 apiVersion: flink.apache.org/v1beta1
 kind: FlinkDeployment
 metadata:
-  # name: session-cluster-minimal-prod # <- template from ibm flink operator
-  name: flinkdep-cluster-savepoint-svil
+  name: flinkdep-questionario_mifid-svil
 spec:
+  image: docker.io/fdaluisio/flinkjob:v1
+  flinkVersion: "v1_18"
   flinkConfiguration:
     license.use: EventAutomationNonProduction
     license.license: L-HRZF-DWHH7A
     license.accept: 'true'
-    # high-availability.type: org.apache.flink.kubernetes.highavailability.KubernetesHaServicesFactory
-    # high-availability.storageDir: 'file:///opt/flink/volume/flink-ha'
+    high-availability.type: org.apache.flink.kubernetes.highavailability.KubernetesHaServicesFactory
+    high-availability.storageDir: 'file:///opt/flink/volume/flink-ha'
     restart-strategy: failure-rate
     restart-strategy.failure-rate.max-failures-per-interval: '10'
     restart-strategy.failure-rate.failure-rate-interval: 10 min
@@ -60,5 +61,11 @@ spec:
     resource:
       memory: 1024m
       cpu: 0.5
+  job:
+    jarURI: local:///opt/flink/usrlib/sql-runner.jar
+    args: ["/opt/flink/usrlib/sql-scripts/QUESTIONARIO_MIFID_PF_PG.sql"]
+    parallelism: 1
+    state: running
+    upgradeMode: savepoint
   mode: native
 
