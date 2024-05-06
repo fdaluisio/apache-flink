@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: flinkdeployment-questionario-mifid-svil
+  name: svil-fd-questionario-mifid-pf-pg
   namespace: openshift-gitops
   finalizers:
     - resources-finalizer.argocd.argoproj.io

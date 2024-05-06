@@ -1,7 +1,7 @@
 apiVersion: flink.apache.org/v1beta1
 kind: FlinkDeployment
 metadata:
-  name: flinkdep-questionario-mifid-svil
+  name: svil-fd-questionario-mifid-pf-pg
 spec:
   image: docker.io/fdaluisio/fd-sql-runner:v1
   imagePullPolicy: Always
@@ -67,7 +67,7 @@ spec:
       cpu: 0.5
   job:
     jarURI: local:///opt/flink/usrlib/sql-runner.jar
-    args: [" "]
+    args: ["null"]
     parallelism: 1
     state: running
     upgradeMode: savepoint
