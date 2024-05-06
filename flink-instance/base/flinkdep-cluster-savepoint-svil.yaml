@@ -3,7 +3,7 @@ kind: FlinkDeployment
 metadata:
   name: flinkdep-questionario-mifid-svil
 spec:
-  image: docker.io/fdaluisio/flinkjob:v1
+  image: docker.io/fdaluisio/flinkjob:v2
   flinkVersion: "v1_18"
   flinkConfiguration:
     license.use: EventAutomationNonProduction
