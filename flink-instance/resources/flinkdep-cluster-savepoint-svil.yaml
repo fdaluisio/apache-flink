@@ -3,7 +3,8 @@ kind: FlinkDeployment
 metadata:
   name: flinkdep-questionario-mifid-svil
 spec:
-  image: docker.io/fdaluisio/fd-questionario-mifid-pf-pg:v1
+  image: docker.io/fdaluisio/fd-sql-runner:v1
+  imagePullPolicy: Always
   flinkVersion: "v1_18"
   flinkConfiguration:
     license.use: EventAutomationNonProduction
@@ -46,12 +47,15 @@ spec:
               mountPath: /opt/flink/log
             - name: flink-volume
               mountPath: /opt/flink/volume
+          env:
+            - name: SQL_RUNNER_ARGS
+              value: /opt/flink/usrlib/sql-scripts/QUESTINOARIO_MIFID_PF_PG.sql
       volumes:
         - name: flink-logs
           emptyDir: {}
         - name: flink-volume
           persistentVolumeClaim:
-            claimName: ibm-flink-pvc
+            claimName: flink-pvc
   jobManager:
     replicas: 1
     resource:
@@ -63,7 +67,7 @@ spec:
       cpu: 0.5
   job:
     jarURI: local:///opt/flink/usrlib/sql-runner.jar
-    args: ["/opt/flink/usrlib/sql-scripts/QUESTINOARIO_MIFID_PF_PG.sql"]
+    args: [""]
     parallelism: 1
     state: running
     upgradeMode: savepoint
