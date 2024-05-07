@@ -9,11 +9,9 @@ spec:
   - list:
       elements:
         - valuesHelmFile: values_svil_01.yaml
-          appName: app1
-          cluster: 'in-cluster'
+          appName: fd-app1
         - valuesHelmFile: values_svil_02.yaml
-          appName: app2
-          cluster: 'in-cluster'
+          appName: fd-app2
   template:
     metadata: 
       name: '{{appName}}'
@@ -27,6 +25,6 @@ spec:
           valueFiles:
             - '{{valuesHelmFile}}'
       destination:
-        name: '{{ cluster }}'
+        name: 'in-cluster'
         namespace: myproject
       syncPolicy: {}
