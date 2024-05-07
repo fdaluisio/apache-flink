@@ -1,0 +1,32 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: svil-fd
+  namespace: openshift-gitops
+spec:
+  generators:
+  - list:
+      elements:
+        - valuesHelmFile: values_svil_01.yaml
+          appName: app1
+          cluster: 'in-cluster'
+        - valuesHelmFile: values_svil_02.yaml
+          appName: app2
+          cluster: 'in-cluster'
+  template:
+    metadata: 
+      name: '{{appName}}'
+    spec:
+      project: default
+      source:
+        repoURL: 'https://github.com/fdaluisio/apache-flink.git'
+        revision: HEAD
+        path: flink-instances/
+        helm:
+          valueFiles:
+            - '{{valuesHelmFile}}'
+      destination:
+        name: '{{ cluster }}'
+        namespace: myproject
+      syncPolicy: {}

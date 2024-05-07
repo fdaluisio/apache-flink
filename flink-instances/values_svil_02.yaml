@@ -1,0 +1,11 @@
+resourceNames:
+  - name: tipologia-cliente
+    env: svil
+    wave: 2
+    image: docker.io/fdaluisio/fd-sql-runner
+    version: v1
+    imagepullpolicy: ifNotPresent
+    sql_runner_args_values: /opt/flink/usrlib/sql-scripts/TIPOLOGIA_CLIENTE.sql
+    storageclassname: crc-csi-hostpath-provisioner
+    storage: 1Gi
+

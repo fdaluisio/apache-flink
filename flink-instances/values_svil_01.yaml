@@ -1,0 +1,10 @@
+resourceNames:
+  - name: questionario-mifid-pf-pg
+    env: svil
+    wave: 1
+    image: docker.io/fdaluisio/fd-sql-runner
+    version: v1
+    imagepullpolicy: ifNotPresent
+    sql_runner_args_values: /opt/flink/usrlib/sql-scripts/QUESTINOARIO_MIFID_PF_PG.sql
+    storageclassname: crc-csi-hostpath-provisioner
+    storage: 1Gi
